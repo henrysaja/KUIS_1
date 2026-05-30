@@ -29,7 +29,7 @@
                     <li class="nav-item">
                         <a class="nav-link btn btn-custom-dark px-3 btn-sm my-1 text-white" href="{{ route('prodi.index') }}">Prodi</a>
                     </li>
-                </ul>
+                  </ul>
             </div>
         </div>
     </nav>

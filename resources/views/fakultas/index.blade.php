@@ -34,6 +34,9 @@
                             </td>
                             <td class="pe-4 py-3 text-center">
                                 <div class="d-inline-flex gap-2">
+                                    <a href="{{ route('fakultas.show', $f->id) }}" class="btn btn-outline-info btn-sm fw-bold px-3 rounded-2 shadow-xs">
+                                        Detail
+                                    </a>
                                     <a href="{{ route('fakultas.edit', $f->id) }}" class="btn btn-outline-warning btn-sm fw-bold px-3 rounded-2 shadow-xs">
                                         Edit
                                     </a>

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Prodi;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use App\Models\Fakultas;
 
 class ProdiController extends Controller
 {
@@ -22,7 +24,8 @@ class ProdiController extends Controller
      */
     public function create()
     {
-        return view('prodi.create');
+        $listFakultas = Fakultas::all();
+        return view('prodi.create', compact('listFakultas'));
     }
 
     /**
@@ -31,11 +34,16 @@ class ProdiController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
+            'fakultas_id' => 'required|exists:fakultas,id',
             'nama_prodi' => 'required|string|max:255',
             'nama_kaprodi' => 'required|string|max:255',
             'alias_prodi' => 'required|string|max:255',
+            'foto_kaprodi' => 'required|mimetypes:image/*',
         ]);
 
+        $fotoKaprodi = Storage::disk('public')->put('foto_kaprodi', $request->file('foto_kaprodi'));
+
+        $validated['foto_kaprodi'] = $fotoKaprodi;
         Prodi::create($validated);
         return redirect()->route('prodi.index')->with('success', 'Data Prodi berhasil disimpan!');
 
@@ -46,7 +54,8 @@ class ProdiController extends Controller
      */
     public function show(Prodi $prodi)
     {
-        return view('prodi.show', compact('prodi'));
+        $listFakultas = Fakultas::all();
+        return view('prodi.detail', compact('prodi', 'listFakultas'));
     }
 
     /**
@@ -54,8 +63,8 @@ class ProdiController extends Controller
      */
     public function edit(Prodi $prodi)
     {
-        return view('prodi.edit', compact('prodi'));
 
+        return view('prodi.edit', compact('prodi'));
     }
 
     /**
@@ -67,6 +76,7 @@ class ProdiController extends Controller
             'nama_prodi' => 'required|string|max:255',
             'nama_kaprodi' => 'required|string|max:255',
             'alias_prodi' => 'required|string|max:255',
+            'foto_kaprodi' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
         $prodi->update($validated);

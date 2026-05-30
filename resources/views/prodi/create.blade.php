@@ -8,29 +8,52 @@
         </div>
 
         <div class="card-body p-4 bg-white">
-            <form action="{{ route('prodi.store') }}" method="POST">
+            <form action="{{ route('prodi.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
 
                 <div class="mb-3">
+                    <label class="form-label fw-bold text-secondary">Fakultas</label>
+                    <select name="fakultas_id" class="form-select form-select-lg rounded-3" required>
+                        <option value="" disabled selected>Pilih fakultas</option>
+                        @foreach($listFakultas as $fakultas)
+                            <option value="{{ $fakultas->id }}" {{ old('fakultas_id') == $fakultas->id ? 'selected' : '' }}>
+                                {{ $fakultas->nama_fakultas }}
+                            </option>
+                        @endforeach
+                    </select>
+                </div>
+
+                <div class="mb-3">
                     <label class="form-label fw-bold text-secondary">Nama Program Studi</label>
-                    <input type="text" name="nama_prodi" class="form-control form-control-lg rounded-3" value="{{ old('nama_prodi') }}" placeholder="Masukkan nama program studi" required>
+                    <input type="text" name="nama_prodi" class="form-control form-control-lg rounded-3"
+                        value="{{ old('nama_prodi') }}" placeholder="Masukkan nama program studi" required>
                 </div>
 
                 <div class="mb-3">
                     <label class="form-label fw-bold text-secondary">Nama Kaprodi</label>
-                    <input type="text" name="nama_kaprodi" class="form-control form-control-lg rounded-3" value="{{ old('nama_kaprodi') }}" placeholder="Masukkan nama kepala program studi" required>
+                    <input type="text" name="nama_kaprodi" class="form-control form-control-lg rounded-3"
+                        value="{{ old('nama_kaprodi') }}" placeholder="Masukkan nama kepala program studi" required>
                 </div>
 
                 <div class="mb-4">
                     <label class="form-label fw-bold text-secondary">Alias Prodi (Misalnya SI, IF, AK, dll)</label>
-                    <input type="text" name="alias_prodi" class="form-control form-control-lg rounded-3" value="{{ old('alias_prodi') }}" placeholder="Contoh: SI" required>
+                    <input type="text" name="alias_prodi" class="form-control form-control-lg rounded-3"
+                        value="{{ old('alias_prodi') }}" placeholder="Contoh: SI" required>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label fw-bold text-secondary">Foto Kaprodi</label>
+                    <input type="file" accept="image/*" name="foto_kaprodi"
+                        class="form-control form-control-lg rounded-3"
+                        placeholder="Masukkan foto kepala program studi" required>
                 </div>
 
                 <div class="d-flex gap-2">
                     <button type="submit" class="btn btn-custom-dark fw-bold px-4 py-2 rounded-3 shadow-sm">
                         Simpan Data
                     </button>
-                    <a href="{{ route('prodi.index') }}" class="btn btn-light border fw-semibold px-4 py-2 rounded-3 text-muted">
+                    <a href="{{ route('prodi.index') }}"
+                        class="btn btn-light border fw-semibold px-4 py-2 rounded-3 text-muted">
                         Kembali
                     </a>
                 </div>
