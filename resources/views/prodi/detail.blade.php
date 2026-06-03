@@ -39,7 +39,7 @@
                             </div>
                         </div>
                     @else
-                        <div class="bg-light rounded-4 d-flex align-items-center justify-content-center flex-column p-4 border border-2 border-dashed" style="aspect-ratio: 1/1; max-width: 280px; margin: 0 auto;">
+                        <div class="bg-light rounded-4 d-flex align-items-center justify-content-center flex-column p-4 " style="aspect-ratio: 1/1; max-width: 280px; margin: 0 auto;">
                             <span class="fs-1 d-block mb-3 text-secondary">📷</span>
                             <span class="badge bg-secondary px-3 py-2 fs-6 rounded-3 shadow-xs">Foto Tidak Tersedia</span>
                         </div>
