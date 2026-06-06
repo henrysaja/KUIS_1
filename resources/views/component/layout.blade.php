@@ -26,8 +26,14 @@
                     <li class="nav-item me-2">
                         <a class="nav-link btn btn-custom-dark px-3 btn-sm my-1 text-white" href="{{ route('fakultas.index') }}">Fakultas</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item me-2">
                         <a class="nav-link btn btn-custom-dark px-3 btn-sm my-1 text-white" href="{{ route('prodi.index') }}">Prodi</a>
+                    </li>
+                    <li class="nav-item me-2">
+                        <form action="/logout" method="POST" >
+                            @csrf
+                            <button type="submit" class="btn btn-custom-dark px-3 py-2 btn-sm my-1 text-white">Logout</button>
+                        </form>
                     </li>
                   </ul>
             </div>
